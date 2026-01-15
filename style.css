@@ -1,147 +1,122 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background: #000;
-  color: #fff;
-  overflow-x: hidden;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
 }
 
 .container {
-  max-width: 1300px;
-  margin: 0 auto;
-  padding: 0 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Header */
+/* --- HEADER --- */
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
 }
 
-.logo {
-  font-size: 1.5rem;
-  letter-spacing: 2px;
-}
-
-nav a {
-  color: #888;
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-
-nav a:hover {
-  color: #fff;
+.nav-links { display: flex; }
+.nav-links a {
+    color: #888;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
 }
 
 .btn-signing {
-  background: #fff;
-  color: #000;
-  padding: 10px 25px;
-  border-radius: 50px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    font-weight: bold;
 }
 
-/* Main Layout */
+/* --- MAIN LAYOUT (Desktop) --- */
 main {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: calc(100vh - 100px);
-  position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80vh;
 }
 
-.content {
-  flex: 1;
-  z-index: 10;
+.content { flex: 1; z-index: 10; }
+
+h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; }
+
+.description { color: #888; max-width: 450px; margin-bottom: 30px; }
+
+.buttons { display: flex; gap: 15px; }
+
+.btn-get-started, .btn-signing-main {
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.8rem;
 }
 
-.tag {
-  color: #666;
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
+.btn-get-started { border: 1px solid #333; color: #fff; }
+.btn-signing-main { background: #fff; color: #000; }
 
-h1 {
-  font-size: 4rem;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.description {
-  color: #888;
-  max-width: 450px;
-  margin-bottom: 30px;
-  line-height: 1.6;
-}
-
-.buttons {
-  display: flex;
-  gap: 20px;
-}
-
-.btn-get-started,
-.btn-signing-main {
-  text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.btn-get-started {
-  border: 1px solid #333;
-  color: #fff;
-}
-.btn-signing-main {
-  background: #fff;
-  color: #000;
-}
-
-/* 3D Viewer Fixes */
 .robot-container {
-  flex: 1.2;
-  height: 100%; /* Important: Spline needs height to render */
-  display: flex;
-  align-items: center;
+    flex: 1;
+    height: 500px;
+    display: flex;
 }
 
-spline-viewer {
-  width: 100%;
-  height: 100%;
+spline-viewer { width: 100%; height: 100%; }
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Tablet (Screens smaller than 1024px) */
+@media (max-width: 1024px) {
+    h1 { font-size: 3rem; }
+    .nav-links { display: none; } /* Hide nav links on tablet/mobile to save space */
 }
 
-/* Background Effects */
+/* Mobile (Screens smaller than 768px) */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Stacks text and robot vertically */
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    .content {
+        order: 2; /* Puts text below the robot */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .robot-container {
+        order: 1; /* Puts robot at the top */
+        width: 100%;
+        height: 350px; /* Smaller robot for mobile */
+    }
+
+    h1 { font-size: 2.5rem; }
+    
+    .description { margin: 0 auto 30px auto; }
+}
+
+/* Background Gradients */
 .image-gradient {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(
-    circle,
-    rgba(80, 0, 255, 0.15) 0%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  z-index: -2;
-}
-
-.layer-blur {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(60px);
-  z-index: -1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 80% 20%, rgba(80,0,255,0.1) 0%, transparent 50%);
+    z-index: -2;
 }
